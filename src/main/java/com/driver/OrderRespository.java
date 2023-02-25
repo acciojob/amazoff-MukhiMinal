@@ -1,7 +1,9 @@
 package com.driver;
 
-import java.util.*;
+import org.springframework.stereotype.Repository;
 
+import java.util.*;
+@Repository
 public class OrderRespository {
     HashMap<String,Order> orderdb=new HashMap<>();
     HashMap<String,DeliveryPartner> deliveryPartnerdb=new HashMap<>();
@@ -34,7 +36,7 @@ public class OrderRespository {
         }
         return null;
     }
-    public DeliveryPartner getPartnerId(String deliveryPartnerId){
+    public DeliveryPartner getPartnerById(String deliveryPartnerId){
         if(deliveryPartnerdb.containsKey(deliveryPartnerId)){
             return deliveryPartnerdb.get(deliveryPartnerId);
         }
@@ -45,7 +47,7 @@ public class OrderRespository {
         return orders;
 
     }
-    public List<String> getOrderByPartnerId(String deliveryPartnerId){
+    public List<String> getOrdersByPartnerId(String deliveryPartnerId){
         List<String> orders=orderToPartnerdb.getOrDefault(deliveryPartnerId,new ArrayList<>());
         return orders;
 
@@ -85,20 +87,20 @@ public class OrderRespository {
         int hour=deliveryTime/60;
         String sHour="";
         if(hour<10){
-            sHour="0"+String.valueOf(hour);
+            sHour="0"+ String.valueOf(hour);
         }
         else{
             sHour=String.valueOf(hour);
         }
-        int min=deliveryTime%60;
+        int min=deliveryTime %60;
         String sMin="";
-        if(min<60){
-            sMin="0"+String.valueOf(min);
+        if(min<10){
+            sMin="0"+ String.valueOf(min);
         }
         else{
             sMin=String.valueOf(min);
         }
-        time=sHour+":"+sMin;
+        time= sHour+ ":" +sMin;
         return time;
     }
     public String deletePartnerById(String deliveryPartnerId){
@@ -127,6 +129,7 @@ public class OrderRespository {
         orderToPartnerdb.put(partnerId,list);
         return "Deleted Successfully";
     }
+
 
 
 }

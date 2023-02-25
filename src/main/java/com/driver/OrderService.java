@@ -24,7 +24,7 @@ public class OrderService {
         return result;
     }
     public DeliveryPartner getPartnerById(String deliveryPartnerId){
-        DeliveryPartner result=orderRespository.getPartnerId(deliveryPartnerId);
+        DeliveryPartner result=orderRespository.getPartnerById(deliveryPartnerId);
         return result;
     }
     public int getOrderCountByPartnerId(String deliveryPartnerId){
@@ -32,7 +32,7 @@ public class OrderService {
         return result;
     }
     public List<String> getOrdersByPartnerId (String deliveryPartnerId){
-        List<String> result=orderRespository.getOrderByPartnerId(deliveryPartnerId);
+        List<String> result=orderRespository.getOrdersByPartnerId(deliveryPartnerId);
         return result;
     }
     public List<String> getAllOrders(){
